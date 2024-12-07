@@ -1,0 +1,32 @@
+apt update -y
+echo "Updated the upto date packages"
+#!/bin/bash
+cp /var/lib/jenkins/sample_database.yml config/database.yml
+
+function clean_up {
+  RAILS_ENV=test bundle exec rake db:drop
+
+  exit $1
+}
+
+rvm use 2.2.1 --install
+rvm info
+ruby --version
+
+gem install bundler --no-rdoc --no-ri
+bundle install
+
+RAILS_ENV=test bundle exec rake db:create:all
+RAILS_ENV=test bundle exec rake db:migrate
+RAILS_ENV=test bundle exec rake db:test:prepare
+
+trap clean_up SIGHUP SIGINT SIGTERM
+
+SPEC_OPTS="--no-drb --format documentation"
+
+bundle exec rspec spec
+
+# Capture value returnd by last command
+rspec_status=$?
+
+clean_up $rspec_status
