@@ -1,0 +1,10 @@
+i    <header class="clr-teal container-fluid my-row-evenly p-t">
+        <div class="">
+            <ul class="my-row ls-none">
+                <li class="h-icon fb-clr"><a href="" class="header-links"><i class="fab fa-facebook-f"></i></a></li>
+                <li class="h-icon g-clr"><a href="" class="header-links"><i class="fab fa-google"></i></a></li>
+                <li class="h-icon insta-clr"><a href="" class="header-links"><i class="fab fa-instagram"></i></a></li>
+                <li class="h-icon li-clr"><a href="" class="header-links"><i class="fab fa-linkedin-in"></i></a></li>
+            </ul>
+        </div>
+
